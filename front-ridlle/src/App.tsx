@@ -1,6 +1,7 @@
 import Login from "./components/login";
 import BestPlayer from "./components/bestPlayer";
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import BestPlayers from "./components/bestPlayers";
 import DeleteRiddle from "./components/deleteRidlle";
 import UpdateRiddle from "./components/updateRidlle";
