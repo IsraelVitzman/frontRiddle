@@ -10,6 +10,7 @@ function App() {
   
   return (
     <>
+    <h1>שלום </h1>
      <BrowserRouter>
       <Routes>
         <Route path="/SwohRiddle" element={<SwohRiddle />} />
