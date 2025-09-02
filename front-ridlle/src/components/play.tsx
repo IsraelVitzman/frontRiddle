@@ -1,64 +1,47 @@
-import { addTimeForAllRidders, returnTime, time, addSecondsForQuestion } from "./time.tsx"
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { time, addTimeForAllRidders, addSecondsForQuestion, returnTime } from "./time.tsx";
+
 export default function Play() {
+  const [riddles, setRiddles] = useState<any[]>([]);
+  const [timeAll, setTimeAll] = useState<number | null>(null);
 
-    const [riddles, setRiddles] = useState([]);
-    const [timeAll,setTimeAll]=useState(null)
-    const [timeForRiddle,setTimeForRiddle]=useState([])
-
-    try {
-        useEffect(() => {
-            const response: any = fetch("http://localhost:3000/riddles/getAllRiddlesToGame")
-            const data = response.json();
-            setRiddles(data)
-        }, [])
-    } catch (err) {
+  // טוען את החידות מהשרת
+  useEffect(() => {
+    const loadRiddles = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/riddles/getAllRiddlesToGame");
+        const data = await response.json();
+        setRiddles(data);
+      } catch (err) {
         console.error(err);
-    }
+      }
+    };
+    loadRiddles();
+  }, []);
 
+  // פונקציה שמפעילה את הלוגיקה של חידה
+  const handleRiddle = async (riddle: any) => {
+    const startTime = time();
+    // כאן אפשר לקרוא לפונקציות אחרות שלך
+    console.log("Riddle ID:", riddle.id);
+    console.log("Riddle Name:", riddle.name);
 
-    const Riddles = async (riddles: any) => {
-        const startTime = time();
-        for (const riddle of riddles) {
-            await Riddle(riddle);
-        }
-        const endTime = time();
-        addTimeForAllRidders(returnTime(startTime, endTime));
-    }
+    // מדידה לדוגמא של זמן לשאלה
+    const endTime = time();
+    addTimeForAllRidders(returnTime(startTime, endTime));
+  };
 
-    const Riddle = async (riddle: any) => {
-        const startTime = time();
-        Questions(riddle)
-        const endAskTime = time();
-        addSecondsForQuestion(returnTime(startTime, endAskTime));
-    }
-
-    const Questions = (ridder: any) => {
-        let answer = null;
-
-        console.log(`Riddle ID: ${ridder.id}`);
-        console.log(`Riddle Name: ${ridder.name}`);
-
-        do {
-            console.log(`Question: ${ridder.question}`);
-            answer = ""
-            if (answer.toLowerCase() === "hint") {
-                console.log(`Hint: ${ridder.hint}`);
-
-            }
-
-            if (answer.toLowerCase() !== ridder.answer.toLowerCase()) {
-
-            }
-        } while (answer.toLowerCase() !== ridder.answer.toLowerCase());
-
-
-    }
-    return (
-        <div>
-            <h1>חידות{}</h1>
-            {}
-            <ul>{riddles.map((element)=>Riddles(element))}</ul>
-        </div>
-    )
+  return (
+    <div>
+      <h1>חידות</h1>
+      <ul>
+        {riddles.map((r) => (
+          <li key={r.id}>
+            {r.name} 
+            <button onClick={() => handleRiddle(r)}>הפעל חידה</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
