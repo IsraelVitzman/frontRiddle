@@ -1,17 +1,27 @@
 import Login from "./components/login";
 import BestPlayer from "./components/bestPlayer";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import BestPlayers from "./components/bestPlayers";
 import DeleteRiddle from "./components/deleteRidlle";
 import UpdateRiddle from "./components/updateRidlle";
-import   SwohRiddle from "./components/showAllriddles"
+import SwohRiddle from "./components/showAllriddles";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+
 function App() {
-  
   return (
-    <>
-    <h1>שלום </h1>
-     <BrowserRouter>
+    <BrowserRouter>
+      <h1>שלום</h1>
+      
+      <nav>
+        <ul>
+          <li><Link to="/SwohRiddle">Show All Riddles</Link></li>
+          <li><Link to="/login">Login</Link></li>
+          <li><Link to="/BestPlayer">Best Player</Link></li>
+          <li><Link to="/BestPlayers">Best Players</Link></li>
+          <li><Link to="/DeleteRiddle">Delete Riddle</Link></li>
+          <li><Link to="/UpdateRiddle">Update Riddle</Link></li>
+        </ul>
+      </nav>
+
       <Routes>
         <Route path="/SwohRiddle" element={<SwohRiddle />} />
         <Route path="/login" element={<Login />} />
@@ -20,9 +30,8 @@ function App() {
         <Route path="/DeleteRiddle" element={<DeleteRiddle />} />
         <Route path="/UpdateRiddle" element={<UpdateRiddle />} />
       </Routes>
-     </BrowserRouter>
-    </>
-  )
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

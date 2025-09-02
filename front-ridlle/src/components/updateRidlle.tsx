@@ -1,3 +1,9 @@
 export default function UpdateRiddle(){
-    return <h1>UpdateRiddle</h1>
+    return <h1>DeleteRiddle
+        <input type="text" name="name" />
+        <input type="text" name="name" />
+        <input type="text" name="name" />
+        <input type="text" name="name" />
+        <input type="text" name="name" />
+    </h1>
 }
