@@ -17,6 +17,8 @@ export default function Login() {
             const result = await response.json();
             if (response.ok) {
                 console.log(result.message);
+                console.log(result.token);
+                localStorage.setItem("1",result.token)
             } else {
                 console.log(result.message);
             }

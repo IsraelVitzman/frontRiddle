@@ -4,6 +4,8 @@ import BestPlayers from "./components/bestPlayers";
 import DeleteRiddle from "./components/deleteRidlle";
 import UpdateRiddle from "./components/updateRidlle";
 import SwohRiddle from "./components/showAllriddles";
+import CreateRiddle from "./components/createRidlle";
+import Play from "./components/play";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 function App() {
@@ -13,6 +15,8 @@ function App() {
       
       <nav>
         <ul>
+          <li><Link to="/CreateRiddle">CreateRiddle</Link></li>
+          <li><Link to="/Play">play</Link></li>
           <li><Link to="/SwohRiddle">Show All Riddles</Link></li>
           <li><Link to="/login">Login</Link></li>
           <li><Link to="/BestPlayer">Best Player</Link></li>
@@ -23,6 +27,8 @@ function App() {
       </nav>
 
       <Routes>
+        <Route path="/CreateRiddle" element={<CreateRiddle />} />
+        <Route path="/Play" element={<Play />} />
         <Route path="/SwohRiddle" element={<SwohRiddle />} />
         <Route path="/login" element={<Login />} />
         <Route path="/BestPlayer" element={<BestPlayer />} />
