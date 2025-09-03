@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function Login() {
     const [name, setUsername] = useState("");
     const [password, setPassword] = useState("");
-
+    const [role, setRole] = useState("");
     const login = async () => {
         try {
             const response = await fetch("http://localhost:3000/player/login", {
@@ -11,7 +11,7 @@ export default function Login() {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ name, password }),
+                body: JSON.stringify({ name, password ,role}),
             });
 
             const result = await response.json();
@@ -42,7 +42,7 @@ export default function Login() {
                 placeholder="input your password"
                 onChange={(e) => setPassword(e.target.value)}
             />
-            <select id="rank" name="rank" required>
+            <select value={role} onChange={(e) => setRole(e.target.value)}>
                 <option value="">בחר</option>
                 <option value="user">משתמש</option>
                 <option value="editor">מנהל</option>
