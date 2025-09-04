@@ -3,22 +3,16 @@ import { useRef } from "react";
 
 export default function BestPlayer() {
     const name = useRef<HTMLInputElement>(null)
-
     const [user, setUser] = useState<any>(null);
-
     const send = async () => {
         if (!name) return
-        const loadRiddles = async () => {
-            try {
-                const response = await fetch(`http://localhost:3000/resultGame/resultBestPlayer/${name.current!.value}`);
-                const data = await response.json();
-                setUser(data)
-
-            } catch (err) {
-                console.error(err);
-            }
-        };
-        loadRiddles();
+        try {
+            const response = await fetch(`http://localhost:3000/resultGame/resultBestPlayer/${name.current!.value}`);
+            const data = await response.json();
+            setUser(data)
+        } catch (err) {
+            console.error(err);
+        }
     };
 
     return (

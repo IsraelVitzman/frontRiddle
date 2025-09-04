@@ -10,9 +10,8 @@ export default function UpdateRiddle() {
     const send = async () => {
         const token = localStorage.getItem("1");
         
-        
         if (!id || !name || !hint || !question || !answer) {
-            console.error("❌ אחד השדות ריק, לא ניתן לשלוח");
+            console.error(" אחד השדות ריק, לא ניתן לשלוח");
             return;
         }
         const data = {

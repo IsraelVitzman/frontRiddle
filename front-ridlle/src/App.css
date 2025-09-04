@@ -1,0 +1,33 @@
+.container-flex {
+    display: flex;
+    width: 100vw;
+    height: 100px;
+    background: linear-gradient(to bottom,
+            rgb(0, 195, 255),
+            rgb(43, 190, 235),
+            rgb(117, 212, 241),
+            rgb(173, 217, 231));
+}
+
+.container-flex ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.container-flex li {
+    margin: 0 15px;
+}
+
+button {
+    box-sizing: 6px;
+    background: 25px;
+    font-size: 20px;
+    padding: 8px 15px;
+    border-radius: 6px;
+}

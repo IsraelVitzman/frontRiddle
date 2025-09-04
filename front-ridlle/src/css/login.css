@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.login{
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    list-style: none;
+    background: linear-gradient(to bottom,
+            rgb(0, 195, 255),
+            rgb(43, 190, 235),
+            rgb(117, 212, 241),
+            rgb(173, 217, 231));
+}
+.login-input{
+    display: flex;
+    width: 380px;
+    font-size: 20px;
+    text-align: center;
+    height: 40px;
+    margin:  15px;
+    border-radius: 6px;
+}
+
+#head{
+    width: 150px;
+    height: 150px;
+}
+.btn{
+    font-size: 30px;
+    background: 20px;
+    margin: 10px;
+}

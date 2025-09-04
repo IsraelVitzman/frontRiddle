@@ -6,38 +6,42 @@ import UpdateRiddle from "./components/updateRidlle";
 import SwohRiddle from "./components/showAllriddles";
 import CreateRiddle from "./components/createRidlle";
 import Play from "./components/play";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+
+import { Routes, Route, useNavigate } from "react-router-dom";
+import './App.css'
+import { useState } from "react";
+
 
 function App() {
+  const navigate = useNavigate();
+  const [role ,setRole] =  useState("")
+  
   return (
-    <BrowserRouter>
-      <h1>שלום</h1>
-      
-      <nav>
+    <>
+    <Login set={setRole}></Login>
+      <nav className="container-flex">
         <ul>
-          <li><Link to="/CreateRiddle">CreateRiddle</Link></li>
-          <li><Link to="/Play">play</Link></li>
-          <li><Link to="/SwohRiddle">Show All Riddles</Link></li>
-          <li><Link to="/login">Login</Link></li>
-          <li><Link to="/BestPlayer">Best Player</Link></li>
-          <li><Link to="/BestPlayers">Best Players</Link></li>
-          <li><Link to="/DeleteRiddle">Delete Riddle</Link></li>
-          <li><Link to="/UpdateRiddle">Update Riddle</Link></li>
+          <li><button onClick={() => navigate("/login")}>Login</button></li>
+          <li><button onClick={() => navigate("/BestPlayer")}>Best Player</button></li>
+          <li><button onClick={() => navigate("/BestPlayers")}>Best Players</button></li>
+          {role==='admin'&&<li><button onClick={() => navigate("/DeleteRiddle")}>Delete Riddle</button></li>}
+          {role==='admin'&&<li><button onClick={() => navigate("/UpdateRiddle")}>Update Riddle</button></li>}
+          {role==='admin'&&<li><button onClick={() => navigate("/CreateRiddle")}>Create Riddle</button></li>}
+          <li><button onClick={() => navigate("/SwohRiddle")}>Show All Riddles</button></li>
         </ul>
       </nav>
-
       <Routes>
         <Route path="/CreateRiddle" element={<CreateRiddle />} />
-        <Route path="/Play" element={<Play />} />
         <Route path="/SwohRiddle" element={<SwohRiddle />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login />}/>
+        <Route path="Play" element={<Play />} />
         <Route path="/BestPlayer" element={<BestPlayer />} />
         <Route path="/BestPlayers" element={<BestPlayers />} />
         <Route path="/DeleteRiddle" element={<DeleteRiddle />} />
         <Route path="/UpdateRiddle" element={<UpdateRiddle />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
 
-export default App;
+export default App

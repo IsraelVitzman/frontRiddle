@@ -7,7 +7,6 @@ export default function DeleteRiddle() {
     const send = async () => {
         if (!id) return
         try {
-
             const response = await fetch(`http://localhost:3000/riddles/deleteRiddle${id.current!.value}`, {
                 method: 'DELETE',
                 headers: {
@@ -16,9 +15,7 @@ export default function DeleteRiddle() {
                 }
             })
             const result = await response.json()
-            console.log(result.message);
-
-            
+            console.log(result.message);  
 
         } catch (err) {
             console.log("invalid eroor :", err);

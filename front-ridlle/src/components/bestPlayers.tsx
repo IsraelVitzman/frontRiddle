@@ -1,29 +1,28 @@
 import { useState } from "react";
-import { useEffect } from "react";
+
 
 export default function BestPlayers() {
 
     const [users, setUsers] = useState<any[]>([]);
 
-    useEffect(() => {
-        const loadRiddles = async () => {
-            try {
-                const response = await fetch(
-                    "http://localhost:3000/resultGame/resultBestAllPlayers"
-                );
-               
-                const data = await response.json();
-                setUsers(data.results);
-            } catch (err) {
-                console.error("Fetch error:", err);
-            }
-        };
+    const send = async () => {
+        try {
+            const response = await fetch(
+                "http://localhost:3000/resultGame/resultBestAllPlayers"
+            );
+            const data = await response.json();
+            setUsers(data.results);
+           
+        } catch (err) {
+            console.error("Fetch error:", err);
+            
+        }
+    };
 
-        loadRiddles();
-    }, []);
-
+    
     return (
         <div className="SwohBestUsers">
+            <button onClick={()=>send()}>הצג</button>
             {users.length === 0 ? (
                 <p>אין נתונים להצגה</p>
             ) : (
